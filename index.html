@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Ajker News</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  
+  <style>
+  a{
+    color:white;
+  }
+  a:focus, a:hover {
+    color: #702e2e;
+  }
+  #footer_section1
+ {
+  background-color: #d32424;
+   
+    letter-spacing: 4px;
+    font-weight: bold;
+    font-family: "Sofia", sans-serif;
+    font-size: 16px;
+  }
+  .navbar{
+    color: rgb(0, 0, 0);
+  }
+  .navbar-inverse {
+    background-color: #d32424;
+    border-color: #e7e7e7;
+    
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: #0c0c0c;
+    background-color: #f8f6f6;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #ffffff;
+}
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+    color: #000;
+    background-color: transparent;
+}
+</style>
+
+</head>
+
+
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="#"><img src="img/logo.png" style="width:150px;height:30px;margin-top:-7px ;margin-left:4%;" /></a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+      
+      <!-- <li id="home" ng-click="loadHome()"><a href="#">Home1</a></li> -->
+      <li id="global" ng-click="loadGlobal()"><a href="#">Global</a></li>
+      <li id="country" ng-click="loadCountry()"><a href="#">Country</a></li>
+      <li id="state" ng-click="loadState()"><a href="#">State</a></li>
+      <li id="district" ng-click="loadDistrict()"><a href="#">District</a></li>
+      <li id="sports" ng-click="loadSports()"><a href="#">Sports</a></li>
+      <li id="ent" ng-click="loadEnt()"><a href="#">Entertainment</a></li>
+      <li id="tech" ng-click="loadTech()"><a href="#">Technology</a></li>
+      <li id="health" ng-click="loadHealth()"><a href="#">Health</a></li>
+      <li id="business" ng-click="loadBusiness()"><a href="#">Business</a></li>
+      <li id="edu" ng-click="loadEdu()"><a href="#">Education</a></li>
+      <li id="elec" ng-click="loadElec()"><a href="#">Election</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container" >
+    <div class="row text-center">
+
+        <img src={{test}} ng-model="test"/>
+
+				<div class="col-sm-3" ng-repeat="x in fata">
+
+					<div class="thumbnail">
+
+						<img src={{x.url}} alt="News" class="rounded" />
+						<h2>
+							{{x.title}}
+						</h2>
+						
+					</div>
+
+
+
+				</div>
+				
+
+
+		</div>
+
+</div>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http){
+   
+          $scope.test="img/loadingimage.gif";
+          
+          
+          // $scope.loadHome=function(){
+          //   $http.get("https://mtaedu.in/news_bct_batch1/angular/data_json.php?rss=https://bengali.abplive.com/home/feed")
+          // .then(function(response) {
+
+          //     $scope.fata = response.data.items;
+          //     $scope.test="";
+          // });
+          // }
+         
+          $scope.loadGlobal=function(){
+            $http.get("https://mtaedu.in/news_bct_batch1/angular/data_json.php?rss=https://bengali.abplive.com/news/world/feed")
+          .then(function(response) {
+
+              $scope.fata = response.data.items;
+              $scope.test="";
+          });
+          }
+          $scope.loadCountry=function(){
+            $http.get("https://mtaedu.in/news_bct_batch1/angular/data_json.php?rss=https://bengali.abplive.com/news/india/feed")
+          .then(function(response) {
+
+              $scope.fata = response.data.items;
+              $scope.test="";
+          });
+          }
+          $scope.loadState=function(){
+            
+            $http.get("https://mtaedu.in/news_bct_batch1/angular/data_json.php?rss=https://bengali.abplive.com/states/feed")
+          .then(function(response) {
+
+              $scope.fata = response.data.items;
+              $scope.test="";
+          });
+          }
+          $scope.loadDistrict=function(){
+            
+            $http.get("https://mtaedu.in/news_bct_batch1/angular/data_json.php?rss=https://bengali.abplive.com/district/feed")
+          .then(function(response) {
+
+              $scope.fata = response.data.items;
+              $scope.test="";
+          });
+          }
+          $scope.loadSports=function(){
+            
+            $http.get("https://mtaedu.in/news_bct_batch1/angular/data_json.php?rss=https://www.abplive.com/sports/feed")
+          .then(function(response) {
+
+              $scope.fata = response.data.items;
+              $scope.test="";
+          });
+          }
+          $scope.loadEnt=function(){
+            $http.get("https://mtaedu.in/news_bct_batch1/angular/data_json.php?rss=https://bengali.abplive.com/entertainment/feed")
+          .then(function(response) {
+
+              $scope.fata = response.data.items;
+              $scope.test="";
+          });
+          }
+          $scope.loadTech=function(){
+            $http.get("https://mtaedu.in/news_bct_batch1/angular/data_json.php?rss=https://bengali.abplive.com/technology/feed")
+          .then(function(response) {
+
+              $scope.fata = response.data.items;
+              $scope.test="";
+          });
+          }
+          $scope.loadHealth=function(){
+            $http.get("https://mtaedu.in/news_bct_batch1/angular/data_json.php?rss=https://bengali.abplive.com/lifestyle/health/feed")
+          .then(function(response) {
+
+              $scope.fata = response.data.items;
+              $scope.test="";
+          });
+          }
+          $scope.loadBusiness=function(){
+            $http.get("https://mtaedu.in/news_bct_batch1/angular/data_json.php?rss=https://bengali.abplive.com/business/feed")
+          .then(function(response) {
+
+              $scope.fata = response.data.items;
+              $scope.test="";
+          });
+          }
+          $scope.loadEdu=function(){
+            $http.get("https://mtaedu.in/news_bct_batch1/angular/data_json.php?rss=https://bengali.abplive.com/education/feed")
+          .then(function(response) {
+
+              $scope.fata = response.data.items;
+              $scope.test="";
+          });
+          }
+          $scope.loadElec=function(){
+            $http.get("https://mtaedu.in/news_bct_batch1/angular/data_json.php?rss=https://bengali.abplive.com/news/elections/feed")
+          .then(function(response) {
+
+              $scope.fata = response.data.items;
+              $scope.test="";
+          });
+          }
+          
+});
+</script>
+
+<div class="container-fluid" id="footer_section1">
+
+  <div class="row">
+
+    <div class="col-sm-8 text-center">
+
+      <h3 style="font-size:18px;color:white;"><b>Company Profile</b></h3><br>
+      <p style="font-size:12px;color:white;">Ajker news keeps you posted about the daily incidents taking place around you ranging from locol to global scope, in Bengali.</p>
+
+    </div>
+
+   <div class="col-sm-4 text-center" style="color:white;">
+
+      <h4><b>Connect With us</b></h4>
+      <p>
+       <a href="https://www.facebook.com/"><i class="fa-brands fa-square-facebook fa-2x"></i></a>
+       <a href="https://www.instagram.com/"><i class="fa-brands fa-square-instagram fa-2x"></i></a>
+       <a href="https://twitter.com/"><i class="fa-brands fa-twitter fa-2x"></i></a>
+       <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube fa-2x"></i></a>
+      </p>
+
+    </div>
+   </div>
+   <div class="col-sm-12 text-center">
+    <br>
+    <hr>
+    <h3 style="font-size:8px;color:white;">&copy;All Right Reserved.This Template is made by Jayantika Roy (JISCE BCT Group-3)</h3>
+    <hr>
+  </div>
+</div>
+
+
+</body>
+</html>
